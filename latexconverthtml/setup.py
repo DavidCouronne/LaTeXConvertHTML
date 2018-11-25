@@ -33,4 +33,10 @@ listeCommandesLayout = [LaTeXCommands.LaTeXCommand("\\thispagestyle", 1),
 listeReplace = [[LaTeXCommands.LaTeXCommand("\\textbf", 1), ["<strong>", 1, "</strong>"]],
                 [LaTeXCommands.LaTeXCommand("\\emph", 1), [
                     "<em>", 1, "</em>"]],
+                    [LaTeXCommands.LaTeXCommand("\\rm", 1), [
+                    1]],
                 ]
+#Remplacement de commandes avec aucun argument
+listeReplaceSimple = [[LaTeXCommands.LaTeXCommand(r"\\Ouv", 0), "(O; $\\vec{u}$, $\\vec{v}$)"],
+[LaTeXCommands.LaTeXCommand(r"\\degre",0), " &deg "],
+]

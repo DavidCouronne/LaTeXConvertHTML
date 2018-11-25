@@ -40,7 +40,11 @@ class Source:
         Supprime toutes les commandes de listeLayout du fichier setup.py"""
         for command in setup.listeCommandesLayout:
             self.contenu = command.cleanCommand(self.contenu)
-
+    def replaceCommandSimple(self):
+        """Agit sur le contenu.
+        Remplace les commandes sans arguments"""
+        for command, replace in setup.listeReplaceSimple:
+            self.contenu = re.sub(command.regex, replace , self.contenu)
     def replaceCommand(self):
         """Agit sur le contenu.
         Remplace toutes les commande de listeReplace de setup.py"""
