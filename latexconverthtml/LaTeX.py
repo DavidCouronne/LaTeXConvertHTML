@@ -8,6 +8,7 @@ import re
 from latexconverthtml import LaTeXCommands, setup
 
 
+
 class Source:
     def __init__(self, original=""):
         self.original = original  # On garde l'original pour développement
@@ -29,10 +30,24 @@ class Source:
 
     def cleanCommand(self):
         """Agit sur le contenu.
-        Suprrime toutes les commandes du fichier setup.py"""
+        Suprrime toutes les commandes de listeCommandesClean du fichier setup.py"""
         for command in setup.listeCommandesClean:
             self.contenu = re.sub(command.regex, "", self.contenu)
             self.lines = self.contenu.splitlines()
+
+    def cleanLayout(self):
+        """Agit sur le contenu.
+        Supprime toutes les commandes de listeLayout du fichier setup.py"""
+        for command in setup.listeCommandesLayout:
+            self.contenu = command.cleanCommand(self.contenu)
+
+    def replaceCommand(self):
+        """Agit sur le contenu.
+        Remplace toutes les commande de listeReplace de setup.py"""
+        for command, arg in setup.listeReplace:
+            print("commande", command)
+            print("arg", arg)
+            self.contenu = command.replaceCommand(self.contenu, arg)
 
     def convertEnumerate(self):
         """Agit sur les lignes.
@@ -90,3 +105,5 @@ class Source:
         # Opérations sur le contenu
         self.collapseLines()
         self.cleanCommand()
+        self.cleanLayout()
+        self.replaceCommand()

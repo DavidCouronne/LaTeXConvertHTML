@@ -78,6 +78,12 @@ if __name__ == "__main__":
               "one(two)three[four]five{six}seven<eight>nine",
               "one(two[three{four<five>six}seven]eight)nine",
               "oneBEGINtwo(threeBEGINfourENDfive)sixENDseven",
+              r"""\head{\textbf{A. P{}. M. E. P{}.}}
+\lhead{\small Baccalauréat S}
+\lfoot{\small{Pondichéry}}
+\rfoot{\small{4 mai 2018}}
+\pagestyle{fancy}
+\thispagestyle{empty}""",
               "ERROR testing ((( mismatched ))] parens"):
         print("\ninput", s)
         try:
