@@ -35,8 +35,13 @@ listeReplace = [[LaTeXCommands.LaTeXCommand("\\textbf", 1), ["<strong>", 1, "</s
                     "<em>", 1, "</em>"]],
                     [LaTeXCommands.LaTeXCommand("\\rm", 1), [
                     1]],
+                    [LaTeXCommands.LaTeXCommand("\\np", 1), [
+                    1]],
                 ]
-#Remplacement de commandes avec aucun argument
-listeReplaceSimple = [[LaTeXCommands.LaTeXCommand(r"\\Ouv", 0), "(O; $\\vec{u}$, $\\vec{v}$)"],
-[LaTeXCommands.LaTeXCommand(r"\\degre",0), " &deg "],
+#Remplacement de commandes avec aucun argument ou commandes math.
+listeReplaceSimple = [[LaTeXCommands.LaTeXCommand(r"\\Ouv", 0), r"(O; $\\vec{u}$, $\\vec{v}$)"],
+[LaTeXCommands.LaTeXCommand(r"\\Oijk", 0), r"(O; $\\vec{i}$, $\\vec{j}$, $\\vec{k}$)"],
+[LaTeXCommands.LaTeXCommand(r"\\degres",0), " &deg "],
+[LaTeXCommands.LaTeXCommand(r"\\vect",0), r"\\vec"],
+
 ]

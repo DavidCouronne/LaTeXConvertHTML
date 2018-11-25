@@ -49,8 +49,8 @@ class Source:
         """Agit sur le contenu.
         Remplace toutes les commande de listeReplace de setup.py"""
         for command, arg in setup.listeReplace:
-            print("commande", command)
-            print("arg", arg)
+            #print("commande", command)
+            #print("arg", arg)
             self.contenu = command.replaceCommand(self.contenu, arg)
 
     def convertEnumerate(self):
@@ -107,7 +107,10 @@ class Source:
         self.convertEnumerate()
         self.findPstricks()
         # Opérations sur le contenu
+        
         self.collapseLines()
+        self.contenu = self.contenu.replace("\n\n", "<br>\n\n")
         self.cleanCommand()
         self.cleanLayout()
         self.replaceCommand()
+        self.replaceCommandSimple()
