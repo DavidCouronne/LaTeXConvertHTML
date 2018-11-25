@@ -14,6 +14,7 @@ listeCommandesClean = [LaTeXCommands.LaTeXCommand(r"\\newpage", 0),
                        LaTeXCommands.LaTeXCommand(r"\\smallskip", 0),
                        LaTeXCommands.LaTeXCommand(r"\\setlength", 0),
                        LaTeXCommands.LaTeXCommand(r"\\Large", 0),
+                       LaTeXCommands.LaTeXCommand(r"\\large", 0),
                        LaTeXCommands.LaTeXCommand(r"\\decofourleft", 0),
                        LaTeXCommands.LaTeXCommand(r"\\decofourright", 0),
                        ]
@@ -33,15 +34,31 @@ listeCommandesLayout = [LaTeXCommands.LaTeXCommand("\\thispagestyle", 1),
 listeReplace = [[LaTeXCommands.LaTeXCommand("\\textbf", 1), ["<strong>", 1, "</strong>"]],
                 [LaTeXCommands.LaTeXCommand("\\emph", 1), [
                     "<em>", 1, "</em>"]],
-                    [LaTeXCommands.LaTeXCommand("\\rm", 1), [
+                [LaTeXCommands.LaTeXCommand("\\rm", 1), [
                     1]],
-                    [LaTeXCommands.LaTeXCommand("\\np", 1), [
+                [LaTeXCommands.LaTeXCommand("\\np", 1), [
+                    1]],
+                [LaTeXCommands.LaTeXCommand("\\textsc", 1), [
                     1]],
                 ]
-#Remplacement de commandes avec aucun argument ou commandes math.
+# Remplacement de commandes avec aucun argument ou commandes math.
 listeReplaceSimple = [[LaTeXCommands.LaTeXCommand(r"\\Ouv", 0), r"(O; $\\vec{u}$, $\\vec{v}$)"],
-[LaTeXCommands.LaTeXCommand(r"\\Oijk", 0), r"(O; $\\vec{i}$, $\\vec{j}$, $\\vec{k}$)"],
-[LaTeXCommands.LaTeXCommand(r"\\degres",0), " &deg "],
-[LaTeXCommands.LaTeXCommand(r"\\vect",0), r"\\vec"],
+                      [LaTeXCommands.LaTeXCommand(
+                          r"\\Oijk", 0), r"(O; $\\vec{i}$, $\\vec{j}$, $\\vec{k}$)"],
+                      [LaTeXCommands.LaTeXCommand(r"\\degres", 0), " &deg "],
+                      [LaTeXCommands.LaTeXCommand(r"\\vect", 0), r"\\vec"],
+                      [LaTeXCommands.LaTeXCommand(r"\\og", 0), " &laquo "],
+                      [LaTeXCommands.LaTeXCommand(r"\\fg", 0), " &raquo "],
 
-]
+                      ]
+
+# Remplacement sans regex
+listeReplaceText = [["\\,\\%", "  &#37 "],
+                    ["\n\n", "<br>\n\n"],
+                    ["\\begin{center}", """<div class="text-center">\n"""],
+                    ["\\end{center}", "</div>\n"],
+                    ["~", ""],
+                    ["\\begin{flushleft}", ""],
+                    ["\\end{flushleft}", ""]
+
+                    ]

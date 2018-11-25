@@ -4,9 +4,10 @@
 # Convertion automatique de LaTeX en HTML
 
 import re
+import os
+import codecs
 
 from latexconverthtml import LaTeXCommands, setup
-
 
 
 class Source:
@@ -40,11 +41,13 @@ class Source:
         Supprime toutes les commandes de listeLayout du fichier setup.py"""
         for command in setup.listeCommandesLayout:
             self.contenu = command.cleanCommand(self.contenu)
+
     def replaceCommandSimple(self):
         """Agit sur le contenu.
         Remplace les commandes sans arguments"""
         for command, replace in setup.listeReplaceSimple:
-            self.contenu = re.sub(command.regex, replace , self.contenu)
+            self.contenu = re.sub(command.regex, replace, self.contenu)
+
     def replaceCommand(self):
         """Agit sur le contenu.
         Remplace toutes les commande de listeReplace de setup.py"""
@@ -52,6 +55,13 @@ class Source:
             #print("commande", command)
             #print("arg", arg)
             self.contenu = command.replaceCommand(self.contenu, arg)
+
+    def replaceText(self):
+        """Agit sur le contenu.
+        Remplacement simple sans regex"""
+        for texaremplacer, textederemplacement in setup.listeReplaceText:
+            self.contenu = self.contenu.replace(
+                texaremplacer, textederemplacement)
 
     def convertEnumerate(self):
         """Agit sur les lignes.
@@ -127,6 +137,35 @@ class Source:
                     lignes_pstricks.append(line)
         self.pstricks = pstricks
 
+    def replacePstricks(self):
+        if len(self.pstricks) == 0:
+            return
+        preamble = r"""\documentclass{standalone}
+\usepackage{pst-plot,pst-tree,pstricks,pst-node,pst-text}
+\usepackage{pst-eucl}
+\usepackage{pstricks-add}
+\usepackage[frenchb]{babel}
+\newcommand{\vect}[1]{\overrightarrow{\,\mathstrut#1\,}}
+\begin{document}
+
+"""
+        nb_figure = 0
+        for figure in self.pstricks:
+            nb_figure = nb_figure + 1
+            total = preamble + figure + r"\end{document}"
+            f = codecs.open("temp.tex", "w", "utf-8")
+            f.write(total)
+            f.close()
+            os.system("latex temp.tex")
+            os.system("dvisvgm temp")
+
+            os.rename("temp.svg", "figure"+str(nb_figure)+".svg")
+            self.contenu = self.contenu.replace(
+                figure, 
+                '<img src="' + "figure"+str(nb_figure)+".svg"+
+                '" class="img-fluid" alt="Responsive image">'
+                )
+
     def process(self):
         """Effectue les taches de conversion"""
         # Opérations sur les lignes
@@ -135,10 +174,11 @@ class Source:
         self.convertItemize()
         self.findPstricks()
         # Opérations sur le contenu
-        
+
         self.collapseLines()
-        self.contenu = self.contenu.replace("\n\n", "<br>\n\n")
+        self.replacePstricks()
         self.cleanCommand()
         self.cleanLayout()
         self.replaceCommand()
         self.replaceCommandSimple()
+        self.replaceText()

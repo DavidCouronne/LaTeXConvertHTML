@@ -4,7 +4,7 @@
 # Convertion automatique de LaTeX en HTML
 
 import re
-
+import os
 
 class LaTeXCommand:
     def __init__(self, nom, arg=1, optn=False):
