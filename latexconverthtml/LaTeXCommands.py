@@ -14,7 +14,8 @@ class LaTeXCommand:
         if arg == 0:
             self.regex = re.compile(self.nom + r"\b")
         if arg == 1:
-            self.regex = re.compile(self.nom + r"\{([\d|\w|\.|-]*)\}")
+            self.regex = re.compile(self.nom + r"\{([\d|\w|\.|-|,|\\]*)\}")
+            
 
     def find(self, contenu):
         return contenu.find(self.nom)

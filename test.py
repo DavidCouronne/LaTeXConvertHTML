@@ -528,10 +528,8 @@ Fin Pour\\ \hline
 \end{tabularx}
 \end{center}""")
 
-test.cleanCommand()
-test.cleanSpace()
-test.convertEnumerate()
-test.collapseLines()
-test.findPstricks()
+test.process()
 
-print(test.pstricks[0])
+
+#print(test.pstricks[0])
+print(test.contenu)

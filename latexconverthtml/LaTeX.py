@@ -13,7 +13,6 @@ class Source:
         self.original = original  # On garde l'original pour développement
         self.contenu = original
         self.lines = self.contenu.splitlines()
-        
 
     def collapseLines(self):
         """Recolle les lignes dans self.contenu"""
@@ -81,3 +80,13 @@ class Source:
                     in_pstricks = True
                     lignes_pstricks.append(line)
         self.pstricks = pstricks
+
+    def process(self):
+        """Effectue les taches de conversion"""
+        # Opérations sur les lignes
+        self.cleanSpace()
+        self.convertEnumerate()
+        self.findPstricks()
+        # Opérations sur le contenu
+        self.collapseLines()
+        self.cleanCommand()
