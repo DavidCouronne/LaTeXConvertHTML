@@ -1,4 +1,11 @@
-test = r"""On admet que $f$ vérifie la relation suivante : $f'(t) + \dfrac{1}{5}f(t) = 4$.
+#!/usr/local/bin/python
+# -*- coding:utf-8 -*-
+#Auteur: David Couronné
+#Convertion automatique de LaTeX en HTML
+
+from latexconverthtml import LaTeX
+
+test = LaTeX.Source(r"""On admet que $f$ vérifie la relation suivante : $f'(t) + \dfrac{1}{5}f(t) = 4$.
 \medskip
 
 \begin{enumerate}
@@ -57,53 +64,11 @@ Quelle interprétation peut-on en donner ?
 
 \newpage
 
-\textbf{\textsc{Exercice 2} \hfill 4 points}"""
+\textbf{\textsc{Exercice 2} \hfill 4 points}""")
 
-
-
-lignes = test.splitlines()
-new_lignes = []
-for ligne in lignes:
-    ligne = ligne.strip()
-    new_lignes.append(ligne)
-
-sortie = "\n".join(new_lignes)
-
-
-lignes = sortie.splitlines()
-
-niveau = 0
-niveau_item = 0
-
-new_lignes = []
-for ligne in lignes:
-    if r"\begin{enumerate}" in ligne:
-        niveau = niveau + 1
-        if niveau == 2:
-            ligne = r"""<ol type ="a" >"""
-            
-        else:
-            
-            ligne = r"""<ol >"""
-            
-    elif r"\end{enumerate}" in ligne:
-        niveau = niveau - 1
-        ligne = r"""</li></ol>"""
-    elif r"\item" in ligne:
-        
-        if niveau_item == 0:
-            
-            ligne = ligne.replace(r"\item","<li>")
-            niveau_item = niveau_item + 1
-        else:
-           
-            ligne = ligne.replace(r"\item","</li><li>")
-            niveau_item = niveau_item -1
-        
-    new_lignes.append(ligne)
-    
-
-sortie = "\n".join(new_lignes)
-print(sortie)
-        
+print(test.original)
+test.cleanSpace()
+test.convertEnumerate()
+test.collapseLines()
+print(test.contenu)
 
