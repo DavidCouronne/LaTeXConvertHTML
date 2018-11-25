@@ -80,6 +80,33 @@ class Source:
             new_lines.append(line)
         self.lines = new_lines
 
+    def convertItemize(self):
+        """Agit sur les lignes.
+        Converti les environnements itemize en listes html"""
+        level_itemize = 0
+        level_item = 0
+        new_lines = []
+
+        for line in self.lines:
+            if r"\begin{itemize}" in line:
+                level_itemize = level_itemize + 1
+                if level_itemize == 2:
+                    line = r"""<ul >"""
+                else:
+                    line = r"""<ul >"""
+            elif r"\end{itemize}" in line:
+                level_itemize = level_itemize - 1
+                line = r"""</li></ul>"""
+            elif r"\item" in line:
+                if level_item == 0:
+                    line = line.replace(r"\item", "<li>")
+                    level_item = level_item + 1
+                else:
+                    line = line.replace(r"\item", "</li><li>")
+                    level_item = level_item - 1
+            new_lines.append(line)
+        self.lines = new_lines
+
     def findPstricks(self):
         """Agit sur les lignes.
         Essaie de trouver les envir
@@ -105,6 +132,7 @@ class Source:
         # Opérations sur les lignes
         self.cleanSpace()
         self.convertEnumerate()
+        self.convertItemize()
         self.findPstricks()
         # Opérations sur le contenu
         
