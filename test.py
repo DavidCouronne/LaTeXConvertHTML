@@ -4,6 +4,8 @@
 #Convertion automatique de LaTeX en HTML
 
 from latexconverthtml import LaTeX
+from latexconverthtml import setup
+import re
 
 test = LaTeX.Source(r"""On admet que $f$ vérifie la relation suivante : $f'(t) + \dfrac{1}{5}f(t) = 4$.
 \medskip
@@ -63,12 +65,16 @@ Quelle interprétation peut-on en donner ?
 \end{enumerate}
 
 \newpage
-
+\vspace{2cm}
 \textbf{\textsc{Exercice 2} \hfill 4 points}""")
 
-print(test.original)
+
 test.cleanSpace()
 test.convertEnumerate()
 test.collapseLines()
-print(test.contenu)
 
+
+for command in setup.listeCommandesClean:
+    test.contenu = re.sub(command.regex, "", test.contenu)
+
+print(test.contenu)
