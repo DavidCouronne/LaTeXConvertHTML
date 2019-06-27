@@ -9,4 +9,5 @@ fields:
   label: Title
   description: Titre de l'article
 pages:
+- src/.vuepress/config.json
 - docs/blog/blog-test.md
