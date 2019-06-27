@@ -18,6 +18,19 @@ fields:
     time_format: 
     display_utc: false
   default: now
+- name: prev
+  type: select
+  default: []
+  config:
+    required: false
+    options: []
+    source:
+      type: pages
+      section: blog-post
+      file: 
+      path: 
+  label: prev
+  description: previous
 pages:
 - docs/blog/un-autre-test.md
 - src/.vuepress/config.json
