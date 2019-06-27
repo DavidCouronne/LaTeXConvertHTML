@@ -4,6 +4,10 @@ auto_deploy: false
 admin_path: ''
 webhook_url: 
 sections:
+- type: document
+  path: src/.vuepress/config.json
+  label: Site Config
+  match: "**/*"
 - type: directory
   path: docs/blog
   label: Blog Post
