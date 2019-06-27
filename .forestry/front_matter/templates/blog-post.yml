@@ -8,3 +8,5 @@ fields:
     required: true
   label: Title
   description: Titre de l'article
+pages:
+- docs/blog/blog-test.md
