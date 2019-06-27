@@ -9,7 +9,7 @@ sections:
   label: Configuration
   create: all
   match: "**/*"
-  new_doc_ext: ".json"
+  new_doc_ext: json
 - type: document
   path: src/.vuepress/config.json
   label: Site Config
