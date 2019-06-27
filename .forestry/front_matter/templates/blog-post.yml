@@ -19,5 +19,6 @@ fields:
     display_utc: false
   default: now
 pages:
+- docs/blog/un-autre-test.md
 - src/.vuepress/config.json
 - docs/blog/blog-test.md
