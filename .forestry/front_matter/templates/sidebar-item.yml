@@ -20,5 +20,17 @@ fields:
   config:
     min: 
     max: 
+- name: childrens
+  type: select
+  default: []
+  config:
+    required: false
+    options: []
+    source:
+      type: pages
+      section: config
+      file: 
+      path: 
+  label: childrens
 pages:
 - config/sidebar/test.json
