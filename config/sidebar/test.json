@@ -2,6 +2,13 @@
   "name": "Premier item",
   "path": "firts-item",
   "children": [
+    {
+      "template": "sidebar-item",
+      "name": "premier enfant",
+      "path": "",
+      "children": [
 
+      ]
+    }
   ]
 }
