@@ -1,3 +1,7 @@
 {
-"name":"Premier item"
+  "name": "Premier item",
+  "path": "firts-item",
+  "children": [
+
+  ]
 }
