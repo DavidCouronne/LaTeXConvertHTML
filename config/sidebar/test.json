@@ -8,7 +8,9 @@
       "path": "",
       "children": [
 
-      ]
+      ],
+      "childrens": ""
     }
-  ]
+  ],
+  "childrens": "config/sidebar/test.json"
 }
