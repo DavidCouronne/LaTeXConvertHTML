@@ -32,7 +32,7 @@ f.close()
 
 replatex = r"""C:\Program Files\MiKTeX 2.9\miktex\bin\x64\latex.exe"""
 
-#os.system("latex " + name)
+# os.system("latex " + name)
 os.system("latex test.tex")
 os.system("dvisvgm test")
-os.rename("test.svg","fig1.svg")
+os.rename("test.svg", "fig1.svg")

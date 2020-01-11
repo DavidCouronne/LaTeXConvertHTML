@@ -6,6 +6,7 @@
 import re
 import os
 
+
 class LaTeXCommand:
     def __init__(self, nom, arg=1, optn=False):
         self.nom = nom
@@ -13,9 +14,8 @@ class LaTeXCommand:
         self.optn = optn
         if arg == 0:
             self.regex = re.compile(self.nom + r"\b")
-        #if arg == 1:
+        # if arg == 1:
         #    self.regex = re.compile(self.nom + r"\{([\d|\w|\.|-|,|\\]*)\}")
-            
 
     def find(self, contenu):
         return contenu.find(self.nom)
@@ -60,7 +60,7 @@ class LaTeXCommand:
     def cleanCommand(self, contenu):
         passe = 0
         while self.nom in contenu:
-            #print(self.nom)
+            # print(self.nom)
             passe = passe + 1
             index, avant, apres, argOptn, listeArg = self.findCommand(contenu)
             # print("Passe"+str(passe),apres)
@@ -77,6 +77,6 @@ class LaTeXCommand:
                 elif argument == 0:
                     texte = texte + "[" + argOptn + "]"
                 else:
-                    texte = texte  + listeArg[argument-1] 
+                    texte = texte + listeArg[argument-1]
             contenu = avant + texte + apres
         return contenu

@@ -15,7 +15,7 @@ import re
 #    1. Any characters not in the set of open/close strings.
 #    2. One of the open/close strings.
 #    3. The remainder of the string.
-# 
+#
 # There is no reason the opening pattern can't be the
 # same as the closing pattern, so quoted strings can
 # be included.  However quotes are not ignored inside
@@ -34,17 +34,18 @@ pat = re.compile("""
 # For example "(" is an opening string and ")" is its
 # closing string.
 
-matching = { "(" : ")",
-             "[" : "]",
-             "{" : "}",
-             "<" : ">",
-             '"' : '"',
-             "'" : "'",
-             "BEGIN" : "END" }
+matching = {"(": ")",
+            "[": "]",
+            "{": "}",
+            "<": ">",
+            '"': '"',
+            "'": "'",
+            "BEGIN": "END"}
 
 # The procedure below matches string s and returns a
 # recursive list matching the nesting of the open/close
 # patterns in s.
+
 
 def matchnested(s, term=""):
     lst = []
@@ -67,6 +68,7 @@ def matchnested(s, term=""):
                              (lst, s, term, m.group(2)))
 
 # Unit test.
+
 
 if __name__ == "__main__":
     for s in ("simple string",

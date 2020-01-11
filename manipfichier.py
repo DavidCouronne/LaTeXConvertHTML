@@ -41,5 +41,3 @@ os.chdir(rep)
 f = codecs.open(name, "w", "utf-8")
 f.write(total)
 f.close()
-
-

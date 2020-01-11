@@ -531,8 +531,6 @@ Fin Pour\\ \hline
 test.process()
 
 
-#print(len(test.pstricks))
-#print(test.contenu)
+# print(len(test.pstricks))
+# print(test.contenu)
 #print(r"(O; $\vec{u}$, $\vec{v}$)")
-
-

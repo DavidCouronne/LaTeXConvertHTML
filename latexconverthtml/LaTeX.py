@@ -161,10 +161,10 @@ class Source:
 
             os.rename("temp.svg", "figure"+str(nb_figure)+".svg")
             self.contenu = self.contenu.replace(
-                figure, 
-                '<img src="' + "figure"+str(nb_figure)+".svg"+
+                figure,
+                '<img src="' + "figure"+str(nb_figure)+".svg" +
                 '" class="img-fluid" alt="Responsive image">'
-                )
+            )
 
     def process(self):
         """Effectue les taches de conversion"""
