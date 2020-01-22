@@ -1,5 +1,6 @@
 #!/usr/local/bin/python
 # -*- coding:utf-8 -*-
+
 # Auteur: David Couronné
 # Convertion automatique de LaTeX en HTML
 import re
@@ -19,26 +20,27 @@ listeCommandesClean = [LaTeXCommands.LaTeXCommand(r"\\newpage", 0),
                        LaTeXCommands.LaTeXCommand(r"\\decofourright", 0),
                        ]
 # Commandes de mise en page ou de glue avec un argument à supprimer
-listeCommandesLayout = [LaTeXCommands.LaTeXCommand("\\thispagestyle", 1),
-                        LaTeXCommands.LaTeXCommand("\\rhead", 1),
-                        LaTeXCommands.LaTeXCommand("\\lhead", 1),
-                        LaTeXCommands.LaTeXCommand("\\lfoot", 1),
-                        LaTeXCommands.LaTeXCommand("\\rfoot", 1),
-                        LaTeXCommands.LaTeXCommand("\\parindent", 1),
-                        LaTeXCommands.LaTeXCommand("\\pagestyle", 1),
-                        LaTeXCommands.LaTeXCommand("\\hspace", 1),
-                        LaTeXCommands.LaTeXCommand("\\vspace", 1),
+listeCommandesLayout = [LaTeXCommands.LaTeXCommand(r"\\thispagestyle", 1),
+                        LaTeXCommands.LaTeXCommand(r"\\rhead", 1),
+                        LaTeXCommands.LaTeXCommand(r"\\lhead", 1),
+                        LaTeXCommands.LaTeXCommand(r"\\lfoot", 1),
+                        LaTeXCommands.LaTeXCommand(r"\\rfoot", 1),
+                        LaTeXCommands.LaTeXCommand(r"\\parindent", 1),
+                        LaTeXCommands.LaTeXCommand(r"\\pagestyle", 1),
+                        LaTeXCommands.LaTeXCommand(r"\\hspace", 1),
+                        LaTeXCommands.LaTeXCommand(r"\\vspace", 1),
                         ]
 
 # Remplacement de commandes avec un ou plusieurs arguments
-listeReplace = [[LaTeXCommands.LaTeXCommand("\\textbf", 1), ["<strong>", 1, "</strong>"]],
-                [LaTeXCommands.LaTeXCommand("\\emph", 1), [
-                    "<em>", 1, "</em>"]],
-                [LaTeXCommands.LaTeXCommand("\\rm", 1), [
+listeReplace = [[LaTeXCommands.LaTeXCommand(r"\\textbf", 1), ["<strong>", 1, "</strong>"]],
+                [LaTeXCommands.LaTeXCommand(r"\\emph", 1),
+                 ["<em>", 1, "</em>"]
+                 ],
+                [LaTeXCommands.LaTeXCommand(r"\\rm", 1), [
                     1]],
-                [LaTeXCommands.LaTeXCommand("\\np", 1), [
+                [LaTeXCommands.LaTeXCommand(r"\\np", 1), [
                     1]],
-                [LaTeXCommands.LaTeXCommand("\\textsc", 1), [
+                [LaTeXCommands.LaTeXCommand(r"\\textsc", 1), [
                     1]],
                 ]
 # Remplacement de commandes avec aucun argument ou commandes math.

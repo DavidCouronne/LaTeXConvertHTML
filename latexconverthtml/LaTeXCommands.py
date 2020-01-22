@@ -1,4 +1,4 @@
-#!/usr/local/bin/python
+#!/usr/bin/python
 # -*- coding:utf-8 -*-
 # Auteur: David Couronné
 # Convertion automatique de LaTeX en HTML

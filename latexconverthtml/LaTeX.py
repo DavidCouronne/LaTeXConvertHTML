@@ -10,8 +10,8 @@ import codecs
 from latexconverthtml import LaTeXCommands, setup
 
 
-class Source:
-    def __init__(self, original=""):
+class Source(object):
+    def __init__(self, original=''):
         self.original = original  # On garde l'original pour développement
         self.contenu = original
         self.lines = self.contenu.splitlines()
